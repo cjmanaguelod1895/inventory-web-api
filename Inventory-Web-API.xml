@@ -4,5 +4,41 @@
         <name>Inventory-Web-API</name>
     </assembly>
     <members>
+        <member name="M:Inventory_Web_API.Controllers.Login.Authenticate(Inventory_Web_API.Models.AuthenticateRequest)">
+            <summary>
+            Login Autentication.
+            </summary>
+            <returns>Login Authentication</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.UserManagement.Get">
+            <summary>
+            Get list for all Users.
+            </summary>
+            <returns>Get list for all Users</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.UserManagement.Get(System.Int32)">
+            <summary>
+            Get list for all user per Id.
+            </summary>
+            <returns>Get list for all Users</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.UserManagement.Post(Inventory_Web_API.Models.Users)">
+            <summary>
+            Add/Save New user details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.UserManagement.Put(System.Int32,Inventory_Web_API.Models.Users)">
+            <summary>
+            Update user details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.UserManagement.Delete(System.Int32)">
+            <summary>
+            Delete user details.
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

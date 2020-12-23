@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory_Web_API.Controllers
 {
+
     [Route("Inventory/[controller]")]
     [ApiController]
     public class Login : ControllerBase
@@ -17,9 +18,16 @@ namespace Inventory_Web_API.Controllers
         {
             _oLoginService = oLoginService;
         }
+
+        /// <summary>
+        /// Login Autentication.
+        /// </summary>
+        /// <returns>Login Authentication</returns>
+        // POST: Inventory/Login
         [HttpPost]
         public IActionResult Authenticate(AuthenticateRequest model)
         {
+
             if (model == null)
             {
                 return Unauthorized();

@@ -18,8 +18,11 @@ namespace Inventory_Web_API.Controllers
             _oUsersService = oUsersService;
         }
 
-
-        // GET: api/<UserManagement>
+        /// <summary>
+        /// Get list for all Users.
+        /// </summary>
+        /// <returns>Get list for all Users</returns>
+        // GET: Inventory/UserManagement
         [HttpGet]
         [Authorize]
         public IEnumerable<Users> Get()
@@ -27,7 +30,11 @@ namespace Inventory_Web_API.Controllers
             return _oUsersService.GetAllUsers();
         }
 
-        // GET api/<UserManagement>/5
+        /// <summary>
+        /// Get list for all user per Id.
+        /// </summary>
+        /// <returns>Get list for all Users</returns>
+        // GET: Inventory/UserManagement/{id}
         [HttpGet("{id}")]
         [Authorize]
         public Users Get(int id)
@@ -35,7 +42,11 @@ namespace Inventory_Web_API.Controllers
             return _oUsersService.GetUser(id);
         }
 
-        // POST api/<UserManagement>
+        /// <summary>
+        /// Add/Save New user details.
+        /// </summary>
+        /// <returns></returns>
+        // POST: Inventory/UserManagement
         [HttpPost]
         [Authorize]
         public Users Post([FromBody] Users oUsers)
@@ -50,7 +61,11 @@ namespace Inventory_Web_API.Controllers
             }
         }
 
-        // PUT api/<UserManagement>/5
+        /// <summary>
+        /// Update user details.
+        /// </summary>
+        /// <returns></returns>
+        // PUT: Inventory/UserManagement/{id}
         [HttpPut("{id}")]
         [Authorize]
         public Users Put(int id, [FromBody] Users oUsers)
@@ -65,6 +80,11 @@ namespace Inventory_Web_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete user details.
+        /// </summary>
+        /// <returns></returns>
+        // PUT: Inventory/UserManagement/{id}
         // DELETE api/<UserManagement>/5
         [HttpDelete("{id}")]
         [Authorize]
