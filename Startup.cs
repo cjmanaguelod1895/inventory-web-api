@@ -88,6 +88,8 @@ namespace Inventory_Web_API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseDeveloperExceptionPage();
+
             app.UseSwagger();
 
             app.UseHttpsRedirection();
