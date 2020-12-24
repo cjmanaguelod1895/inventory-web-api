@@ -3,6 +3,7 @@ using Inventory_Web_API.Common;
 using Inventory_Web_API.Helpers;
 using Inventory_Web_API.IServices;
 using Inventory_Web_API.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -22,15 +23,20 @@ namespace Inventory_Web_API.Services
         Users _oUser = new Users();
         List<Users> _oUsers = new List<Users>();
 
-
         private readonly AppSettings _appSettings;
 
-        public LoginService(IOptions<AppSettings> appsettings)
+        private readonly IConfiguration _iConfig;
+
+        public LoginService(IOptions<AppSettings> appsettings, IConfiguration iConfig)
         {
             _appSettings = appsettings.Value;
+            _iConfig = iConfig;
         }
+
+
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
+            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
 
             var token = "";
             _oUsers = new List<Users>();
@@ -45,7 +51,7 @@ namespace Inventory_Web_API.Services
             {
                 int operationType = Convert.ToInt32(OperationType.Login);
 
-                using (IDbConnection con = new SqlConnection(Global.ConnectionString))
+                using (IDbConnection con = new SqlConnection(conn))
                 {
                     if (con.State == ConnectionState.Closed)
                     {
