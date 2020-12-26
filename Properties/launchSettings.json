@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:63612",
+      "applicationUrl": "http://inventory-omni.azurewebsites.net/",
       "sslPort": 44317
     }
   },
