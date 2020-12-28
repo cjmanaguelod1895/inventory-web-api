@@ -155,6 +155,7 @@ namespace Inventory_Web_API.Services
             string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
 
             _oUser = new Users();
+            user.UserId = userId;
 
             try
             {

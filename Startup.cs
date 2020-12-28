@@ -78,6 +78,7 @@ namespace Inventory_Web_API
             Global.ConnectionString = Configuration.GetConnectionString("CrudAPI");
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IBarangayService, BarangayService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,6 +10,36 @@
             </summary>
             <returns>Login Authentication</returns>
         </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.Get">
+            <summary>
+            Get list of Barangay.
+            </summary>
+            <returns>Get list of Barangay</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.Get(System.Int32)">
+            <summary>
+            Get list of all Barangay per Id.
+            </summary>
+            <returns>Get list of all Barangay per Id</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.Post(Inventory_Web_API.Models.PSGC.Barangay)">
+            <summary>
+            Add/Save New Barangay Details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.Put(System.Int32,Inventory_Web_API.Models.PSGC.Barangay)">
+            <summary>
+            Update Barangay details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.Delete(System.Int32)">
+            <summary>
+            Delete Barangay details.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Inventory_Web_API.Controllers.UserManagement.Get">
             <summary>
             Get list for all Users.
