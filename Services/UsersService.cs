@@ -19,22 +19,16 @@ namespace Inventory_Web_API.Services
         Users _oUser = new Users();
         List<Users> _oUsers = new List<Users>();
 
-
         private readonly AppSettings _appSettings;
-        private readonly IConfiguration _iConfig;
 
-        public UsersService(IOptions<AppSettings> appsettings,  IConfiguration iConfig)
+        public UsersService(IOptions<AppSettings> appsettings)
         {
             _appSettings = appsettings.Value;
-            _iConfig = iConfig;
         }
-
 
 
         public List<Users> GetAllUsers()
         {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
-
             _oUser = new Users();
             _oUsers = new List<Users>();
 
@@ -42,7 +36,7 @@ namespace Inventory_Web_API.Services
             {
                 int operationType = Convert.ToInt32(OperationType.SelectAll);
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State != ConnectionState.Closed)
                     {
@@ -74,7 +68,6 @@ namespace Inventory_Web_API.Services
 
         public Users GetUser(int userID)
         {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
 
             _oUser = new Users()
             {
@@ -85,7 +78,7 @@ namespace Inventory_Web_API.Services
             {
                 int operationType = Convert.ToInt32(OperationType.SelectSpecific);
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State == ConnectionState.Closed)
                     {
@@ -114,15 +107,15 @@ namespace Inventory_Web_API.Services
 
         public Users AddUser(Users users)
         {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
 
             _oUser = new Users();
+            users.Password = EncryptAndDecrypt.ConvertToEncrypt(users.Password);
 
             try
             {
                 int operationType = Convert.ToInt32(users.UserId == 0 ? OperationType.Insert : OperationType.Update);
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State == ConnectionState.Closed)
                     {
@@ -151,8 +144,7 @@ namespace Inventory_Web_API.Services
         }
 
         public Users UpdateUser(int userId, Users user)
-        {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
+        { 
 
             _oUser = new Users();
             user.UserId = userId;
@@ -161,7 +153,7 @@ namespace Inventory_Web_API.Services
             {
                 int operationType = Convert.ToInt32(OperationType.Update);
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State == ConnectionState.Closed)
                     {
@@ -189,7 +181,6 @@ namespace Inventory_Web_API.Services
 
         public string Delete(int userId)
         {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
 
             string message = "";
 
@@ -200,7 +191,7 @@ namespace Inventory_Web_API.Services
                     UserId = userId
                 };
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State == ConnectionState.Closed)
                     {
@@ -227,7 +218,5 @@ namespace Inventory_Web_API.Services
 
             return message;
         }
-
-
     }
 }

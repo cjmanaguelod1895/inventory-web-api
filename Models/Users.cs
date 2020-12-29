@@ -24,7 +24,7 @@ namespace Inventory_Web_API.Models
 
         public string Username { get; set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public string Password { get; set; }
 
 

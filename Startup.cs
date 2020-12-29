@@ -75,7 +75,7 @@ namespace Inventory_Web_API
 
 
             services.AddSingleton<IConfiguration>(Configuration);
-            Global.ConnectionString = Configuration.GetConnectionString("CrudAPI");
+            AppSettings.ConnectionStrings = Configuration.GetValue<string>("MySettings:ConnectionStrings");
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IBarangayService, BarangayService>();

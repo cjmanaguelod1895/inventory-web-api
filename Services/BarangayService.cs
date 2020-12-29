@@ -21,26 +21,21 @@ namespace Inventory_Web_API.Services
 
 
         private readonly AppSettings _appSettings;
-        private readonly IConfiguration _iConfig;
 
-        public BarangayService(IOptions<AppSettings> appsettings, IConfiguration iConfig)
+        public BarangayService(IOptions<AppSettings> appsettings)
         {
             _appSettings = appsettings.Value;
-            _iConfig = iConfig;
         }
 
 
         public Barangay AddBarangay(Barangay barangay)
         {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
-
-            _barangay = new Barangay();
 
             try
             {
                 int operationType = Convert.ToInt32(barangay.BarangayId == 0 ? OperationType.Insert : OperationType.Update);
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State == ConnectionState.Closed)
                     {
@@ -71,8 +66,6 @@ namespace Inventory_Web_API.Services
 
         public string Delete(int barangayId)
         {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
-
             string message = "";
 
             try
@@ -82,7 +75,7 @@ namespace Inventory_Web_API.Services
                     BarangayId = barangayId
                 };
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State == ConnectionState.Closed)
                     {
@@ -112,14 +105,11 @@ namespace Inventory_Web_API.Services
 
         public List<Barangay> GetBarangayList()
         {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
-
-
             try
             {
                 int operationType = Convert.ToInt32(OperationType.SelectAll);
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State != ConnectionState.Closed)
                     {
@@ -151,8 +141,6 @@ namespace Inventory_Web_API.Services
 
         public Barangay GetBarangay(int baranggayId)
         {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
-
             _barangay = new Barangay()
             {
                 BarangayId = baranggayId
@@ -162,7 +150,7 @@ namespace Inventory_Web_API.Services
             {
                 int operationType = Convert.ToInt32(OperationType.SelectSpecific);
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State == ConnectionState.Closed)
                     {
@@ -191,16 +179,14 @@ namespace Inventory_Web_API.Services
 
         public Barangay UpdateBarangay(int baranggayId, Barangay barangay)
         {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
 
-            _barangay = new Barangay();
             barangay.BarangayId = baranggayId;
 
             try
             {
                 int operationType = Convert.ToInt32(OperationType.Update);
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State == ConnectionState.Closed)
                     {

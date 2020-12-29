@@ -7,6 +7,7 @@ namespace Inventory_Web_API.Helpers
 {
     public class AppSettings
     {
+        public static string ConnectionStrings { get; set; }
         public string Secret { get; set; }
     }
 }

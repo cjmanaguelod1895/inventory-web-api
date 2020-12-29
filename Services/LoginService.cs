@@ -25,21 +25,18 @@ namespace Inventory_Web_API.Services
 
         private readonly AppSettings _appSettings;
 
-        private readonly IConfiguration _iConfig;
 
-        public LoginService(IOptions<AppSettings> appsettings, IConfiguration iConfig)
+        public LoginService(IOptions<AppSettings> appsettings)
         {
             _appSettings = appsettings.Value;
-            _iConfig = iConfig;
         }
 
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            string conn = _iConfig.GetValue<string>("MySettings:ConnectionStrings");
-
             var token = "";
             _oUsers = new List<Users>();
+            model.Password = EncryptAndDecrypt.ConvertToEncrypt(model.Password);
 
             _oUser = new Users()
             {
@@ -51,7 +48,7 @@ namespace Inventory_Web_API.Services
             {
                 int operationType = Convert.ToInt32(OperationType.Login);
 
-                using (IDbConnection con = new SqlConnection(conn))
+                using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
                     if (con.State == ConnectionState.Closed)
                     {
