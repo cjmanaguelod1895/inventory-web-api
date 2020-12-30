@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory_Web_API.Controllers
 {
-
+    [ApiExplorerSettings(GroupName = "Login CRUD Endpoint")]
     [Route("Inventory/[controller]")]
     [ApiController]
     public class Login : ControllerBase

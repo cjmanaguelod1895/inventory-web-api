@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -64,6 +65,23 @@ namespace Inventory_Web_API
                         Url = new Uri("https://twitter.com/cjmanaguelod1895"),
                     }
                 });
+
+                c.TagActionsBy(api =>
+                {
+                    if (api.GroupName != null)
+                    {
+                        return new[] { api.GroupName };
+                    }
+
+                    var controllerActionDescriptor = api.ActionDescriptor as ControllerActionDescriptor;
+                    if (controllerActionDescriptor != null)
+                    {
+                        return new[] { controllerActionDescriptor.ControllerName };
+                    }
+
+                    throw new InvalidOperationException("Unable to determine tag for endpoint.");
+                });
+                c.DocInclusionPredicate((name, api) => true);
 
                 // Set the comments path for the Swagger JSON and UI.
                 //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

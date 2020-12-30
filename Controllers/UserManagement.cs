@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory_Web_API.Controllers
 {
+    [ApiExplorerSettings(GroupName = "User Management CRUD Endpoint")]
     [Route("Inventory/[controller]")]
     [ApiController]
     public class UserManagement : ControllerBase
