@@ -8,8 +8,6 @@ namespace Inventory_Web_API.IServices
 {
     public interface IBarangayService
     {
-     
-
         List<Barangay> GetBarangayList();
 
         Barangay GetBarangay(int baranggayId);

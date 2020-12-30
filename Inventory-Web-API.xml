@@ -10,33 +10,123 @@
             </summary>
             <returns>Login Authentication</returns>
         </member>
-        <member name="M:Inventory_Web_API.Controllers.PSGC.Get">
+        <member name="M:Inventory_Web_API.Controllers.PSGC.GetBarangayList">
             <summary>
             Get list of Barangay.
             </summary>
             <returns>Get list of Barangay</returns>
         </member>
-        <member name="M:Inventory_Web_API.Controllers.PSGC.Get(System.Int32)">
+        <member name="M:Inventory_Web_API.Controllers.PSGC.GetBarangay(System.Int32)">
             <summary>
             Get list of all Barangay per Id.
             </summary>
             <returns>Get list of all Barangay per Id</returns>
         </member>
-        <member name="M:Inventory_Web_API.Controllers.PSGC.Post(Inventory_Web_API.Models.PSGC.Barangay)">
+        <member name="M:Inventory_Web_API.Controllers.PSGC.AddNewBarangay(Inventory_Web_API.Models.PSGC.Barangay)">
             <summary>
             Add/Save New Barangay Details.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Inventory_Web_API.Controllers.PSGC.Put(System.Int32,Inventory_Web_API.Models.PSGC.Barangay)">
+        <member name="M:Inventory_Web_API.Controllers.PSGC.UpdateBarangay(System.Int32,Inventory_Web_API.Models.PSGC.Barangay)">
             <summary>
             Update Barangay details.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Inventory_Web_API.Controllers.PSGC.Delete(System.Int32)">
+        <member name="M:Inventory_Web_API.Controllers.PSGC.DeleteBarangay(System.Int32)">
             <summary>
             Delete Barangay details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.GetCityMunicipalityList">
+            <summary>
+            Get list of CityMunicipality.
+            </summary>
+            <returns>Get list of CityMunicipality</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.GetCityMunicipality(System.Int32)">
+            <summary>
+            Get list of all CityMunicipality per Id.
+            </summary>
+            <returns>Get list of all CityMunicipality per Id</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.AddNewCityMunicipality(Inventory_Web_API.Models.PSGC.CityMunicipality)">
+            <summary>
+            Add/Save New CityMunicipality Details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.UpdateCityMunicipality(System.Int32,Inventory_Web_API.Models.PSGC.CityMunicipality)">
+            <summary>
+            Update CityMunicipality details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.DeleteCityMunicipality(System.Int32)">
+            <summary>
+            Delete CityMunicipality details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.GetProvinceList">
+            <summary>
+            Get list of Province.
+            </summary>
+            <returns>Get list of Province</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.GetProvince(System.Int32)">
+            <summary>
+            Get list of all Province per Id.
+            </summary>
+            <returns>Get list of all Province per Id</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.AddNewProvince(Inventory_Web_API.Models.PSGC.Province)">
+            <summary>
+            Add/Save New Province Details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.UpdateProvince(System.Int32,Inventory_Web_API.Models.PSGC.Province)">
+            <summary>
+            Update Province details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.DeleteProvince(System.Int32)">
+            <summary>
+            Delete Province details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.GetRegionList">
+            <summary>
+            Get list of Region.
+            </summary>
+            <returns>Get list of Region</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.GetRegion(System.Int32)">
+            <summary>
+            Get list of all Region per Id.
+            </summary>
+            <returns>Get list of all Region per Id</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.AddNewRegion(Inventory_Web_API.Models.PSGC.Region)">
+            <summary>
+            Add/Save New Region Details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.UpdateProvince(System.Int32,Inventory_Web_API.Models.PSGC.Region)">
+            <summary>
+            Update Region details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.PSGC.DeleteRegion(System.Int32)">
+            <summary>
+            Delete Region details.
             </summary>
             <returns></returns>
         </member>
