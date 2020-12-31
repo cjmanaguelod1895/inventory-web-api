@@ -17,6 +17,8 @@ namespace Inventory_Web_API.Models
 
         public string Token { get; set; }
 
+        public string IsActive { get; set; }
+
         public AuthenticateResponse(Users user, string token)
         {
             UserId = user.UserId;
@@ -24,6 +26,7 @@ namespace Inventory_Web_API.Models
             Username = user.Username;
             Role = user.Role;
             Token = token;
+            IsActive = user.IsActive;
         }
 
     }

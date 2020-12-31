@@ -109,7 +109,10 @@ namespace Inventory_Web_API.Services
         {
 
             _oUser = new Users();
+            DateTime aDate = DateTime.Now;
+            var birthDate = users.BirthDate;
             users.Password = EncryptAndDecrypt.ConvertToEncrypt(users.Password);
+            users.DateCreated = aDate;
 
             try
             {

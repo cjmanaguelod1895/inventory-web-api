@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
@@ -17,6 +18,8 @@ namespace Inventory_Web_API.Models
 
         public string Address { get; set; }
 
+        public string BirthDate { get; set; }
+
         public string EmailAddress { get; set; }
 
         public string Role { get; set; }
@@ -26,6 +29,14 @@ namespace Inventory_Web_API.Models
 
         //[JsonIgnore]
         public string Password { get; set; }
+
+        public string IsActive { get; set; }
+
+        
+        public DateTime? DateCreated { get; set; }
+
+        [IgnoreDataMember]
+        public DateTime? LastLoginDate { get; set; }
 
 
         public string Message { get; set; }
@@ -40,10 +51,14 @@ namespace Inventory_Web_API.Models
             parameters.Add("@Name", oUser.Name);
             parameters.Add("@Age", oUser.Age);
             parameters.Add("@Address", oUser.Address);
+            parameters.Add("@BirthDate", oUser.BirthDate);
             parameters.Add("@EmailAddress", oUser.EmailAddress);
             parameters.Add("@Role", oUser.Role);
             parameters.Add("@Username", oUser.Username);
             parameters.Add("@Password", oUser.Password);
+            parameters.Add("@IsActive", oUser.IsActive);
+            parameters.Add("@DateCreated", oUser.DateCreated);
+            parameters.Add("@LastLoginDate", oUser.LastLoginDate);
             parameters.Add("@OperationType", operationType);
 
             return parameters;

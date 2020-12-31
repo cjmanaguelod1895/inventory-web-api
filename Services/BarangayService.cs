@@ -16,6 +16,8 @@ namespace Inventory_Web_API.Services
 {
     public class BarangayService : IBarangayService
     {
+
+        PSGC _psgc = new PSGC();
         Barangay _barangay = new Barangay();
         List<Barangay> _barangayList = new List<Barangay>();
 
@@ -55,7 +57,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _barangay.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _barangay;
@@ -133,7 +135,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _barangay.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _barangayList;
@@ -170,7 +172,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _barangay.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _barangay;
@@ -206,7 +208,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _barangay.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _barangay;

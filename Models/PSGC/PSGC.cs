@@ -13,7 +13,8 @@ namespace Inventory_Web_API.Models.PSGC
         public Province Province { get; set; }
         public Region Region { get; set; }
 
-        
+        public string Message { get; set; }
+
 
     }
     #region Barangay
@@ -66,8 +67,6 @@ namespace Inventory_Web_API.Models.PSGC
 
         public string CityMunCode { get; set; }
 
-        public string Message { get; set; }
-
         public DynamicParameters SetParameters(CityMunicipality cityMunicipality, int operationType)
         {
 
@@ -99,8 +98,6 @@ namespace Inventory_Web_API.Models.PSGC
 
         public string ProvinceCode { get; set; }
 
-        public string Message { get; set; }
-
         public DynamicParameters SetParameters(Province province, int operationType)
         {
 
@@ -130,12 +127,8 @@ namespace Inventory_Web_API.Models.PSGC
 
         public string RegCode { get; set; }
 
-        public string Message { get; set; }
-
         public DynamicParameters SetParameters(Region region, int operationType)
         {
-
-
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@RegionId", region.RegionId);
             parameters.Add("@PSGCCode", region.PSGCCode);

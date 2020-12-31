@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -21,8 +22,6 @@ namespace Inventory_Web_API.Services
     public class LoginService : ILoginService
     {
         Users _oUser = new Users();
-        List<Users> _oUsers = new List<Users>();
-
         private readonly AppSettings _appSettings;
 
 
@@ -34,14 +33,15 @@ namespace Inventory_Web_API.Services
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
+            DateTime currentDate = DateTime.UtcNow.AddHours(8);
             var token = "";
-            _oUsers = new List<Users>();
             model.Password = EncryptAndDecrypt.ConvertToEncrypt(model.Password);
 
             _oUser = new Users()
             {
                 Username = model.Username,
-                Password = model.Password
+                Password = model.Password,
+                LastLoginDate = currentDate
             };
 
             try

@@ -15,6 +15,7 @@ namespace Inventory_Web_API.Services
 {
     public class ProvinceService : IProvinceService
     {
+        PSGC _psgc = new PSGC();
         Province _province = new Province();
         List<Province> _provinceList = new List<Province>();
 
@@ -56,7 +57,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _province.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _provinceList;
@@ -93,7 +94,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _province.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _province;
@@ -125,7 +126,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _province.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _province;
@@ -159,7 +160,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _province.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _province;

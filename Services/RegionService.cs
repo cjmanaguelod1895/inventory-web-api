@@ -15,6 +15,7 @@ namespace Inventory_Web_API.Services
 {
     public class RegionService : IRegionService
     {
+        PSGC _psgc = new PSGC();
         Region _region = new Region();
         List<Region> _regionList = new List<Region>();
 
@@ -56,7 +57,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _region.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _regionList;
@@ -93,7 +94,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _region.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _region;
@@ -125,7 +126,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _region.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _region;
@@ -159,7 +160,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _region.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _region;

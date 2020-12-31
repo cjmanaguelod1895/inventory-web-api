@@ -33,12 +33,21 @@ namespace Inventory_Web_API.Controllers
                 return Unauthorized();
             }
 
+
             var userAccount = _oLoginService.Authenticate(model);
 
-            if (userAccount.Token == null || userAccount.Token == "")
+            if (!String.IsNullOrEmpty(userAccount.Token))
+            {
+                if (userAccount.IsActive != "Y")
+                {
+                    return BadRequest(new { message = "Account is deactived. Please contact the System Administrator." });
+                }
+            }
+            else
             {
                 return BadRequest(new { message = "Incorrect username or password" });
             }
+
 
             return Ok(userAccount);
         }

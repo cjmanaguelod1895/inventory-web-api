@@ -15,6 +15,7 @@ namespace Inventory_Web_API.Services
 {
     public class CityMunicipalityService : ICityMunicipalityService
     {
+        PSGC _psgc = new PSGC();
         CityMunicipality _cityMunicipality = new CityMunicipality();
         List<CityMunicipality> _cityMunicipalityList = new List<CityMunicipality>();
 
@@ -56,7 +57,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _cityMunicipality.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _cityMunicipalityList;
@@ -93,7 +94,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _cityMunicipality.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _cityMunicipality;
@@ -125,7 +126,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _cityMunicipality.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _cityMunicipality;
@@ -160,7 +161,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _cityMunicipality.Message = ex.Message;
+                _psgc.Message = ex.Message;
             }
 
             return _cityMunicipality;
