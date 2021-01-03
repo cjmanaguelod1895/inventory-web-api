@@ -4,6 +4,36 @@
         <name>Inventory-Web-API</name>
     </assembly>
     <members>
+        <member name="M:Inventory_Web_API.Controllers.Brands.GetBrandList">
+            <summary>
+            Get list of Brands.
+            </summary>
+            <returns>Get list of Brands</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Brands.GetBrand(System.Int32)">
+            <summary>
+            Get list of all Brand per Id.
+            </summary>
+            <returns>Get list of all Brands per Id</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Brands.AddNewBrand(Inventory_Web_API.Models.Brand)">
+            <summary>
+            Add/Save New Brand Details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Brands.UpdateBrand(System.Int32,Inventory_Web_API.Models.Brand)">
+            <summary>
+            Update Brand details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Brands.DeleteBrand(System.Int32)">
+            <summary>
+            Delete Brand details.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Inventory_Web_API.Controllers.Login.Authenticate(Inventory_Web_API.Models.AuthenticateRequest)">
             <summary>
             Login Autentication.
@@ -127,6 +157,36 @@
         <member name="M:Inventory_Web_API.Controllers.PSGC.DeleteRegion(System.Int32)">
             <summary>
             Delete Region details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.UnitOfMeasures.GetUnitOfMeasureList">
+            <summary>
+            Get list of Unit Of Measure.
+            </summary>
+            <returns>Get list of Unit Of Measure</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.UnitOfMeasures.GetUnitOfMeasure(System.Int32)">
+            <summary>
+            Get list of all Unit Of Measure per Id.
+            </summary>
+            <returns>Get list of all Unit Of Measure per Id</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.UnitOfMeasures.AddNewUnitOfMeasure(Inventory_Web_API.Models.UnitOfMeasure)">
+            <summary>
+            Add/Save New Unit Of Measure Details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.UnitOfMeasures.UpdateUnitOfMeasure(System.Int32,Inventory_Web_API.Models.UnitOfMeasure)">
+            <summary>
+            Update Unit Of Measure details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.UnitOfMeasures.DeleteUnitOfMeasure(System.Int32)">
+            <summary>
+            Delete Unit Of Measure details.
             </summary>
             <returns></returns>
         </member>
