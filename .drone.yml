@@ -9,7 +9,6 @@ steps:
     password: "@@Win4me@@cj1995"
     repo: sijaymm/inventorywebapi
     dockerfile: path/to/Dockerfile
-    tags: latest
     bip: false
     experimental: true
     insecure: true
