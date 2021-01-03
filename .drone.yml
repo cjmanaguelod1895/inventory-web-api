@@ -10,6 +10,7 @@ steps:
     repo: sijaymm/inventorywebapi
     dockerfile: path/to/Dockerfile
     tags: latest
+    bip:false
     
 
 trigger:
