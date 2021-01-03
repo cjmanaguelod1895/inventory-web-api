@@ -6,7 +6,7 @@ steps:
   image: plugins/docker
   settings:
     username: sijaymm
-    password: @@Win4me@@cj1995
+    password: "@@Win4me@@cj1995""
     repo: sijaymm/inventorywebapi
     dockerfile: path/to/Dockerfile
     tags: latest
