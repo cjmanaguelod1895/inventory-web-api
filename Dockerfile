@@ -7,10 +7,10 @@ COPY ["Inventory-Web-API.csproj", "InventoryWebAPIDeployment/"]
 RUN dotnet restore "InventoryWebAPIDeployment/Inventory-Web-API.csproj"
 WORKDIR "/src/InventoryWebAPIDeployment"
 COPY . .
-RUN dotnet build "Inventory-Web-API.csproj.csproj" -c Release -o /app/build
+RUN dotnet build "Inventory-Web-API.csproj" -c Release -o /app/build
  
 FROM build AS publish
-RUN dotnet publish "Inventory-Web-API.csproj.csproj" -c Release -o /app/publish
+RUN dotnet publish "Inventory-Web-API.csproj" -c Release -o /app/publish
  
 FROM base AS final
 WORKDIR /app
