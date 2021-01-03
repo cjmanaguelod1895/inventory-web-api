@@ -3,12 +3,14 @@ type: docker
 name: Project Build and Deploy
 
 steps:    
-  - name: Deploy to Docker Hub
-    image: docker
-    commands:
-      #- dotnet clean InventoryDB/InventoryDB.
-      - docker build --file "drone/src/Dockerfile"
-      - docker tag inventorywebapi registry.heroku.com/omni-inventory-web-api/web
+ 
+  - name: Deploy to Docker Hub  
+    image: plugins/docker
+    settings:
+      username: sijaymm
+      password: @@Win4me@@cj1995
+    repo: sijaymm/inventorywebapi
+    dockerfile: path/to/Dockerfile
 
 
   - name: Deploy to Heroko
