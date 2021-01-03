@@ -12,6 +12,8 @@ steps:
         from_secret: password
     repo: sijaymm/inventorywebapi
     dockerfile: path/to/Dockerfile
+    commands:
+    - docker tag inventorywebapi:latest registry.heroku.com/inventorywebapi/web
   
 
 
