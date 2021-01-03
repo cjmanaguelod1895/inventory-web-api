@@ -1,0 +1,28 @@
+kind: pipeline
+type: docker
+name: Project Build and Deploy
+
+steps:    
+  - name: Deploy to Docker Hub
+    image: docker
+    commands:
+      #- dotnet clean InventoryDB/InventoryDB.
+      - docker build -t InventoryWebApi
+      - docker tag InventoryWebApi registry.heroku.com/omni-inventory-web-api/web
+
+
+  - name: Deploy to Heroko
+    image: heroku/heroku
+    commands:
+      - heroku login
+      - heroku container:login
+      - heroku container:push web -a omni-inventory-web-api
+      - heroku container:release web -a omni-inventory-web-api
+
+trigger:
+  branch:
+    include:
+      - master
+  event:
+    include:
+      - push
