@@ -12,6 +12,7 @@ steps:
     tags: latest
     bip: false
     experimental: true
+    insecure: true
     
 
 trigger:
