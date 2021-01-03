@@ -12,6 +12,7 @@ steps:
         from_secret: password
     repo: sijaymm/inventorywebapi
     dockerfile: path/to/Dockerfile
+    tags: latest
   
 
 
