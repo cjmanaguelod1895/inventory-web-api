@@ -7,8 +7,8 @@ steps:
     image: docker
     commands:
       #- dotnet clean InventoryDB/InventoryDB.
-      - docker build -t InventoryWebApi
-      - docker tag InventoryWebApi registry.heroku.com/omni-inventory-web-api/web
+      - docker build -t inventorywebapi
+      - docker tag inventorywebapi registry.heroku.com/omni-inventory-web-api/web
 
 
   - name: Deploy to Heroko
