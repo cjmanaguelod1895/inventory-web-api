@@ -22,6 +22,14 @@ namespace Inventory_Web_API.Models
 
         public string EmailAddress { get; set; }
 
+        public string City { get; set; }
+
+        public string Region { get; set; }
+
+        public string Province { get; set; }
+
+        public string Barangay { get; set; }
+
         public string Role { get; set; }
 
 
@@ -51,6 +59,10 @@ namespace Inventory_Web_API.Models
             parameters.Add("@Name", oUser.Name);
             parameters.Add("@Age", oUser.Age);
             parameters.Add("@Address", oUser.Address);
+            parameters.Add("@City", oUser.City);
+            parameters.Add("@Region", oUser.Region);
+            parameters.Add("@Province", oUser.Province);
+            parameters.Add("@Barangay", oUser.Barangay);
             parameters.Add("@BirthDate", oUser.BirthDate);
             parameters.Add("@EmailAddress", oUser.EmailAddress);
             parameters.Add("@Role", oUser.Role);
