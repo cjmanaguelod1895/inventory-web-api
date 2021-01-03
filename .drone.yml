@@ -3,15 +3,16 @@ type: docker
 name: Project Build and Deploy
 
 steps:    
-  - name: Deploy to Docker Hub  
-    image: plugins/docker
-    settings:
-      username:
-        from_secret: username
-      password:
-        from_secret: password
+
+
+- name: docker  
+  image: plugins/docker
+  settings:
+    username: sijaymm
+    password: @@Win4me@@cj1995
     repo: sijaymm/inventorywebapi
     dockerfile: path/to/Dockerfile
+    tags: latest
     
   
 
