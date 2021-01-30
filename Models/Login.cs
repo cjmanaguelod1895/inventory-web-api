@@ -9,7 +9,7 @@ namespace Inventory_Web_API.Models
     {
         public string Username { get; set; }
 
-        public string Role { get; set; }
+        public int Role_id { get; set; }
 
         public string Password { get; set; }
 

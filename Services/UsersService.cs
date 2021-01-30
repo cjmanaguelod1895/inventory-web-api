@@ -46,7 +46,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("sp_Users",
+                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
                        _oUser.SetParameters(_oUser, operationType),
                        commandType: CommandType.StoredProcedure);
 
@@ -60,7 +60,7 @@ namespace Inventory_Web_API.Services
             catch (Exception ex)
             {
 
-                _oUser.Message = ex.Message;
+                
             }
 
             return _oUsers;
@@ -71,7 +71,7 @@ namespace Inventory_Web_API.Services
 
             _oUser = new Users()
             {
-                UserId = userID
+                Id = userID
             };
 
             try
@@ -85,7 +85,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("sp_Users",
+                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
                         _oUser.SetParameters(_oUser, operationType),
                        commandType: CommandType.StoredProcedure).ToList();
 
@@ -95,10 +95,9 @@ namespace Inventory_Web_API.Services
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                _oUser.Message = ex.Message;
             }
 
             return _oUser;
@@ -110,13 +109,13 @@ namespace Inventory_Web_API.Services
 
             _oUser = new Users();
             DateTime aDate = DateTime.Now;
-            var birthDate = users.BirthDate;
             users.Password = EncryptAndDecrypt.ConvertToEncrypt(users.Password);
-            users.DateCreated = aDate;
+            users.Created_at = aDate;
+            users.Updated_at = aDate;
 
             try
             {
-                int operationType = Convert.ToInt32(users.UserId == 0 ? OperationType.Insert : OperationType.Update);
+                int operationType = Convert.ToInt32(users.Id == 0 ? OperationType.Insert : OperationType.Update);
 
                 using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
@@ -125,7 +124,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("sp_Users",
+                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
                         _oUser.SetParameters(users, operationType),
                         commandType: CommandType.StoredProcedure);
 
@@ -135,10 +134,10 @@ namespace Inventory_Web_API.Services
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                _oUser.Message = ex.Message;
+               
             }
 
             return _oUser;
@@ -150,7 +149,9 @@ namespace Inventory_Web_API.Services
         { 
 
             _oUser = new Users();
-            user.UserId = userId;
+            DateTime aDate = DateTime.Now;
+            user.Id = userId;
+            user.Updated_at = aDate;
 
             try
             {
@@ -163,7 +164,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("sp_Users",
+                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
                         _oUser.SetParameters(user, operationType),
                         commandType: CommandType.StoredProcedure);
 
@@ -173,10 +174,10 @@ namespace Inventory_Web_API.Services
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                _oUser.Message = ex.Message;
+               
             }
 
             return _oUser;
@@ -191,7 +192,7 @@ namespace Inventory_Web_API.Services
             {
                 _oUser = new Users()
                 {
-                    UserId = userId
+                    Id = userId
                 };
 
                 using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
@@ -201,7 +202,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("sp_Users",
+                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
                         _oUser.SetParameters(_oUser, (int)OperationType.Delete),
                         commandType: CommandType.StoredProcedure);
 

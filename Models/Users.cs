@@ -10,67 +10,53 @@ namespace Inventory_Web_API.Models
 {
     public class Users
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public string Age { get; set; }
+        public string Email { get; set; }
 
-        public string Address { get; set; }
-
-        public string BirthDate { get; set; }
-
-        public string EmailAddress { get; set; }
-
-        public string City { get; set; }
-
-        public string Region { get; set; }
-
-        public string Province { get; set; }
-
-        public string Barangay { get; set; }
-
-        public string Role { get; set; }
-
-
-        public string Username { get; set; }
-
-        //[JsonIgnore]
         public string Password { get; set; }
 
-        public string IsActive { get; set; }
+        public string Phone { get; set; }
 
-        
-        public DateTime? DateCreated { get; set; }
+        public string Company_Name { get; set; }
 
-        [IgnoreDataMember]
-        public DateTime? LastLoginDate { get; set; }
+        public int Role_id { get; set; }
 
+        public int Biller_Id { get; set; }
 
-        public string Message { get; set; }
+        public int Warehouse_id { get; set; }
 
+        public int Is_Active { get; set; }
+
+        public int Is_deleted { get; set; }
+
+        public DateTime? Created_at { get; set; }
+
+        public DateTime? Updated_at { get; set; }
+
+        public DateTime? Last_login_date { get; set; }
 
         public DynamicParameters SetParameters(Users oUser, int operationType)
         {
 
 
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@UserId", oUser.UserId);
+            parameters.Add("@Id", oUser.Id);
             parameters.Add("@Name", oUser.Name);
-            parameters.Add("@Age", oUser.Age);
-            parameters.Add("@Address", oUser.Address);
-            parameters.Add("@City", oUser.City);
-            parameters.Add("@Region", oUser.Region);
-            parameters.Add("@Province", oUser.Province);
-            parameters.Add("@Barangay", oUser.Barangay);
-            parameters.Add("@BirthDate", oUser.BirthDate);
-            parameters.Add("@EmailAddress", oUser.EmailAddress);
-            parameters.Add("@Role", oUser.Role);
-            parameters.Add("@Username", oUser.Username);
+            parameters.Add("@Email", oUser.Email);
             parameters.Add("@Password", oUser.Password);
-            parameters.Add("@IsActive", oUser.IsActive);
-            parameters.Add("@DateCreated", oUser.DateCreated);
-            parameters.Add("@LastLoginDate", oUser.LastLoginDate);
+            parameters.Add("@Phone", oUser.Phone);
+            parameters.Add("@Company_Name", oUser.Company_Name);
+            parameters.Add("@Role_id", oUser.Role_id);
+            parameters.Add("@Biller_id", oUser.Biller_Id);
+            parameters.Add("@Warehouse_id", oUser.Warehouse_id);
+            parameters.Add("@Is_active", oUser.Is_Active);
+            parameters.Add("@Is_deleted", oUser.Is_deleted);
+            parameters.Add("@Created_at", oUser.Created_at);
+            parameters.Add("@Updated_at", oUser.Updated_at);
+            parameters.Add("@Last_login_date", oUser.Last_login_date);
             parameters.Add("@OperationType", operationType);
 
             return parameters;

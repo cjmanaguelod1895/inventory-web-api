@@ -11,22 +11,22 @@ namespace Inventory_Web_API.Models
 
         public string Name { get; set; }
 
-        public string Username { get; set; }
+        public string Email { get; set; }
 
-        public string Role { get; set; }
+        public int Role_id { get; set; }
 
         public string Token { get; set; }
 
-        public string IsActive { get; set; }
+        public int Is_Active { get; set; }
 
         public AuthenticateResponse(Users user, string token)
         {
-            UserId = user.UserId;
+            UserId = user.Id;
             Name = user.Name;
-            Username = user.Username;
-            Role = user.Role;
+            Email = user.Email;
+            Role_id = user.Role_id;
             Token = token;
-            IsActive = user.IsActive;
+            Is_Active = user.Is_Active;
         }
 
     }

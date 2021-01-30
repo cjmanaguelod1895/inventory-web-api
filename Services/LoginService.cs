@@ -39,9 +39,9 @@ namespace Inventory_Web_API.Services
 
             _oUser = new Users()
             {
-                Username = model.Username,
+                Email = model.Email,
                 Password = model.Password,
-                LastLoginDate = currentDate
+                Last_login_date = currentDate
             };
 
             try
@@ -55,13 +55,13 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("sp_Users",
+                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
                        _oUser.SetParameters(_oUser, operationType),
                        commandType: CommandType.StoredProcedure).ToList();
 
                     if (oUsers != null && oUsers.Count() > 0)
                     {
-                        _oUser = oUsers.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
+                        _oUser = oUsers.SingleOrDefault(x => x.Email == model.Email && x.Password == model.Password);
 
 
                         // authentication successful so generate jwt token
@@ -74,7 +74,7 @@ namespace Inventory_Web_API.Services
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -91,7 +91,7 @@ namespace Inventory_Web_API.Services
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("userId", user.UserId.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("userId", user.Id.ToString()) }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

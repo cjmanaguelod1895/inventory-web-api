@@ -38,7 +38,7 @@ namespace Inventory_Web_API.Controllers
 
             if (!String.IsNullOrEmpty(userAccount.Token))
             {
-                if (userAccount.IsActive != "Y")
+                if (userAccount.Is_Active != 1)
                 {
                     return BadRequest(new { message = "Account is deactived. Please contact the System Administrator." });
                 }
