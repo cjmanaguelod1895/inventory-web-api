@@ -4,6 +4,36 @@
         <name>Inventory-Web-API</name>
     </assembly>
     <members>
+        <member name="M:Inventory_Web_API.Controllers.Billers.Get">
+            <summary>
+            Get list for all Billers.
+            </summary>
+            <returns>Get list for all Billers</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Billers.Get(System.Int32)">
+            <summary>
+            Get list for all Biller per Id.
+            </summary>
+            <returns>Get list for all Biller</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Billers.Post(Inventory_Web_API.Models.Biller)">
+            <summary>
+            Add/Save New Billers details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Billers.Put(System.Int32,Inventory_Web_API.Models.Biller)">
+            <summary>
+            Update user Biller.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Billers.Delete(System.Int32)">
+            <summary>
+            Delete user Biller.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Inventory_Web_API.Controllers.Brands.GetBrandList">
             <summary>
             Get list of Brands.
