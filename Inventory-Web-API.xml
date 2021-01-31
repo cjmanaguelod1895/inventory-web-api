@@ -64,6 +64,36 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Inventory_Web_API.Controllers.Currencies.GetCurrencyList">
+            <summary>
+            Get list of Currencies.
+            </summary>
+            <returns>Get list of Currencies</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Currencies.Get(System.Int32)">
+            <summary>
+            Get list of all Currency per Id.
+            </summary>
+            <returns>Get list of all Currency per Id</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Currencies.Add(Inventory_Web_API.Models.Currency)">
+            <summary>
+            Add/Save New Currency Details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Currencies.Update(System.Int32,Inventory_Web_API.Models.Currency)">
+            <summary>
+            Update Currency details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Currencies.Delet(System.Int32)">
+            <summary>
+            Delete Currency details.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Inventory_Web_API.Controllers.CustomerGroups.Get">
             <summary>
             Get list for all CustomerGroups.
