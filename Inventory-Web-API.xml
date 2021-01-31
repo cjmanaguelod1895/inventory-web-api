@@ -220,6 +220,36 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Inventory_Web_API.Controllers.Suppliers.Get">
+            <summary>
+            Get list for all Suppliers.
+            </summary>
+            <returns>Get list for all Suppliers</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Suppliers.Get(System.Int32)">
+            <summary>
+            Get list for all Supplier per Id.
+            </summary>
+            <returns>Get list for all Supplier</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Suppliers.Post(Inventory_Web_API.Models.Supplier)">
+            <summary>
+            Add/Save New Suppliers details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Suppliers.Put(System.Int32,Inventory_Web_API.Models.Supplier)">
+            <summary>
+            Update user Supplier.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Suppliers.Delete(System.Int32)">
+            <summary>
+            Delete user Biller.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Inventory_Web_API.Controllers.UnitOfMeasures.GetUnitOfMeasureList">
             <summary>
             Get list of Unit Of Measure.
