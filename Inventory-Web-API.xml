@@ -310,5 +310,35 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Inventory_Web_API.Controllers.WareHouses.Get">
+            <summary>
+            Get list for all WareHouse.
+            </summary>
+            <returns>Get list for all WareHouse</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.WareHouses.Get(System.Int32)">
+            <summary>
+            Get list for all WareHouse per Id.
+            </summary>
+            <returns>Get list for all WareHouse</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.WareHouses.Post(Inventory_Web_API.Models.WareHouse)">
+            <summary>
+            Add/Save New WareHouse details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.WareHouses.Put(System.Int32,Inventory_Web_API.Models.WareHouse)">
+            <summary>
+            Update user WareHouse.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.WareHouses.Delete(System.Int32)">
+            <summary>
+            Delete user WareHouse.
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

@@ -13,28 +13,26 @@ using System.Threading.Tasks;
 
 namespace Inventory_Web_API.Services
 {
-    public class BillerService : IBillerService
+    public class WareHouseService : IWareHouseService
     {
-        Biller _oBiller = new Biller();
-        List<Biller> _oBillers = new List<Biller>();
+        WareHouse _owareHouse = new WareHouse();
+        List<WareHouse> _owareHouses = new List<WareHouse>();
 
         private readonly AppSettings _appSettings;
 
-        public BillerService(IOptions<AppSettings> appsettings)
+        public WareHouseService(IOptions<AppSettings> appsettings)
         {
             _appSettings = appsettings.Value;
         }
-
-
-        public Biller AddBiller(Biller biller)
+        public WareHouse AddWareHouse(WareHouse wareHouse)
         {
-            _oBiller = new Biller();
+            _owareHouse = new WareHouse();
             DateTime aDate = DateTime.Now;
-            biller.Created_at = aDate;
+            wareHouse.Created_At = aDate;
 
             try
             {
-                int operationType = Convert.ToInt32(biller.Id == 0 ? OperationType.Insert : OperationType.Update);
+                int operationType = Convert.ToInt32(wareHouse.Id == 0 ? OperationType.Insert : OperationType.Update);
 
                 using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
@@ -43,13 +41,13 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oBillers = con.Query<Biller>("[salespropos].[sp_Billers]",
-                        _oBiller.SetParameters(biller, operationType),
+                    var oWareHouse = con.Query<WareHouse>("[salespropos].[sp_WareHouse]",
+                        _owareHouse.SetParameters(wareHouse, operationType),
                         commandType: CommandType.StoredProcedure);
 
-                    if (oBillers != null && oBillers.Count() > 0)
+                    if (oWareHouse != null && oWareHouse.Count() > 0)
                     {
-                        _oBiller = oBillers.FirstOrDefault();
+                        _owareHouse = oWareHouse.FirstOrDefault();
                     }
                 }
             }
@@ -59,18 +57,18 @@ namespace Inventory_Web_API.Services
 
             }
 
-            return _oBiller;
+            return _owareHouse;
         }
 
-        public string Delete(int billerId)
+        public string Delete(int wareHouseId)
         {
             string message = "";
 
             try
             {
-                _oBiller = new Biller()
+                _owareHouse = new WareHouse()
                 {
-                    Id = billerId
+                    Id = wareHouseId
                 };
 
                 using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
@@ -80,13 +78,13 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oBillers = con.Query<Biller>("[salespropos].[sp_Billers]",
-                        _oBiller.SetParameters(_oBiller, (int)OperationType.Delete),
+                    var oWareHouse = con.Query<WareHouse>("[salespropos].[sp_WareHouse]",
+                        _owareHouse.SetParameters(_owareHouse, (int)OperationType.Delete),
                         commandType: CommandType.StoredProcedure);
 
-                    if (oBillers != null && oBillers.Count() > 0)
+                    if (oWareHouse != null && oWareHouse.Count() > 0)
                     {
-                        _oBiller = oBillers.FirstOrDefault();
+                        _owareHouse = oWareHouse.FirstOrDefault();
 
                         message = "Data Deleted!";
                     }
@@ -101,11 +99,11 @@ namespace Inventory_Web_API.Services
             return message;
         }
 
-        public Biller GetBiller(int billerId)
+        public WareHouse GetWareHouse(int wareHouseId)
         {
-            _oBiller = new Biller()
+            _owareHouse = new WareHouse()
             {
-                Id = billerId
+                Id = wareHouseId
             };
 
             try
@@ -119,13 +117,13 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oBiller = con.Query<Biller>("[salespropos].[sp_Billers]",
-                        _oBiller.SetParameters(_oBiller, operationType),
+                    var oWareHouse = con.Query<WareHouse>("[salespropos].[sp_WareHouse]",
+                        _owareHouse.SetParameters(_owareHouse, operationType),
                        commandType: CommandType.StoredProcedure).ToList();
 
-                    if (oBiller != null && oBiller.Count() > 0)
+                    if (oWareHouse != null && oWareHouse.Count() > 0)
                     {
-                        _oBiller = oBiller.SingleOrDefault();
+                        _owareHouse = oWareHouse.SingleOrDefault();
                     }
                 }
             }
@@ -134,13 +132,13 @@ namespace Inventory_Web_API.Services
 
             }
 
-            return _oBiller;
+            return _owareHouse;
         }
 
-        public List<Biller> GetBillerList()
+        public List<WareHouse> GetWareHouseList()
         {
-            _oBiller = new Biller();
-            _oBillers = new List<Biller>();
+            _owareHouse = new WareHouse();
+            _owareHouses = new List<WareHouse>();
 
             try
             {
@@ -156,14 +154,14 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oBillers = con.Query<Biller>("[salespropos].[sp_Billers]",
-                       _oBiller.SetParameters(_oBiller, operationType),
+                    var oWareHouse = con.Query<WareHouse>("[salespropos].[sp_WareHouse]",
+                       _owareHouse.SetParameters(_owareHouse, operationType),
                        commandType: CommandType.StoredProcedure);
 
 
-                    if (oBillers != null && oBillers.Count() > 0)
+                    if (oWareHouse != null && oWareHouse.Count() > 0)
                     {
-                        _oBillers = oBillers.ToList();
+                        _owareHouses = oWareHouse.ToList();
                     }
                 }
             }
@@ -173,15 +171,15 @@ namespace Inventory_Web_API.Services
 
             }
 
-            return _oBillers;
+            return _owareHouses;
         }
 
-        public Biller UpdateBiller(int billerId, Biller biller)
+        public WareHouse UpdateWareHouse(int wareHouseId, WareHouse wareHouse)
         {
-            _oBiller = new Biller();
+            _owareHouse = new WareHouse();
             DateTime aDate = DateTime.Now;
-            biller.Id = billerId;
-            biller.Updated_at = aDate;
+            wareHouse.Id = wareHouseId;
+            wareHouse.Updated_at = aDate;
 
             try
             {
@@ -194,13 +192,13 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oBillers = con.Query<Biller>("[salespropos].[sp_Billers]",
-                        _oBiller.SetParameters(biller, operationType),
+                    var oWareHouse = con.Query<WareHouse>("[salespropos].[sp_WareHouse]",
+                        _owareHouse.SetParameters(wareHouse, operationType),
                         commandType: CommandType.StoredProcedure);
 
-                    if (oBillers != null && oBillers.Count() > 0)
+                    if (oWareHouse != null && oWareHouse.Count() > 0)
                     {
-                        _oBiller = oBillers.FirstOrDefault();
+                        _owareHouse = oWareHouse.FirstOrDefault();
                     }
                 }
             }
@@ -210,7 +208,7 @@ namespace Inventory_Web_API.Services
 
             }
 
-            return _oBiller;
+            return _owareHouse;
         }
     }
 }
