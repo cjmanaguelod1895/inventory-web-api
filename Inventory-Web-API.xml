@@ -64,6 +64,36 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Inventory_Web_API.Controllers.CustomerGroups.Get">
+            <summary>
+            Get list for all CustomerGroups.
+            </summary>
+            <returns>Get list for all CustomerGroups</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.CustomerGroups.Get(System.Int32)">
+            <summary>
+            Get list for all CustomerGroup per Id.
+            </summary>
+            <returns>Get list for all CustomerGroup</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.CustomerGroups.Post(Inventory_Web_API.Models.CustomerGroup)">
+            <summary>
+            Add/Save New CustomerGroup details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.CustomerGroups.Put(System.Int32,Inventory_Web_API.Models.CustomerGroup)">
+            <summary>
+            Update user CustomerGroup.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.CustomerGroups.Delete(System.Int32)">
+            <summary>
+            Delete user CustomerGroup.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Inventory_Web_API.Controllers.Customers.Get">
             <summary>
             Get list for all Customers.
