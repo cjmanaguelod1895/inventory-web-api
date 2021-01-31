@@ -34,6 +34,36 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Inventory_Web_API.Controllers.Customers.Get">
+            <summary>
+            Get list for all Customers.
+            </summary>
+            <returns>Get list for all Customers</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Customers.Get(System.Int32)">
+            <summary>
+            Get list for all Customer per Id.
+            </summary>
+            <returns>Get list for all Customer</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Customers.Post(Inventory_Web_API.Models.Customer)">
+            <summary>
+            Add/Save New Customers details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Customers.Put(System.Int32,Inventory_Web_API.Models.Customer)">
+            <summary>
+            Update user Customer.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Customers.Delete(System.Int32)">
+            <summary>
+            Delete user Customer.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Inventory_Web_API.Controllers.Login.Authenticate(Inventory_Web_API.Models.AuthenticateRequest)">
             <summary>
             Login Autentication.
