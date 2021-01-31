@@ -32,7 +32,7 @@ namespace Inventory_Web_API.Services
         {
             try
             {
-                int operationType = Convert.ToInt32(oUnitOfMeasure.UnitID == 0 ? OperationType.Insert : OperationType.Update);
+                int operationType = Convert.ToInt32(oUnitOfMeasure.Id == 0 ? OperationType.Insert : OperationType.Update);
 
                 using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
@@ -41,7 +41,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUnitOfMeasureList = con.Query<UnitOfMeasure>("sp_UnitOfMeasure",
+                    var oUnitOfMeasureList = con.Query<UnitOfMeasure>("[salespropos].[sp_UnitOfMeasures]",
                         _unitOfMeasure.SetParameters(oUnitOfMeasure, operationType),
                         commandType: CommandType.StoredProcedure);
 
@@ -68,7 +68,7 @@ namespace Inventory_Web_API.Services
             {
                 _unitOfMeasure = new UnitOfMeasure()
                 {
-                    UnitID = unitId
+                    Id = unitId
                 };
 
                 using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
@@ -78,7 +78,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUnitOfMeasure = con.Query<UnitOfMeasure>("sp_UnitOfMeasure",
+                    var oUnitOfMeasure = con.Query<UnitOfMeasure>("[salespropos].[sp_UnitOfMeasures]",
                         _unitOfMeasure.SetParameters(_unitOfMeasure, (int)OperationType.Delete),
                         commandType: CommandType.StoredProcedure);
 
@@ -103,7 +103,7 @@ namespace Inventory_Web_API.Services
         {
             _unitOfMeasure = new UnitOfMeasure()
             {
-                UnitID = unitId
+                Id = unitId
             };
 
             try
@@ -117,7 +117,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUnitOfMeasure = con.Query<UnitOfMeasure>("sp_UnitOfMeasure",
+                    var oUnitOfMeasure = con.Query<UnitOfMeasure>("[salespropos].[sp_UnitOfMeasures]",
                         _unitOfMeasure.SetParameters(_unitOfMeasure, operationType),
                        commandType: CommandType.StoredProcedure).ToList();
 
@@ -152,7 +152,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUnitOfMeasureList = con.Query<UnitOfMeasure>("sp_UnitOfMeasure",
+                    var oUnitOfMeasureList = con.Query<UnitOfMeasure>("[salespropos].[sp_UnitOfMeasures]",
                        _unitOfMeasure.SetParameters(_unitOfMeasure, operationType),
                        commandType: CommandType.StoredProcedure);
 
@@ -174,7 +174,7 @@ namespace Inventory_Web_API.Services
 
         public UnitOfMeasure UpdateUnitOfMeasure(int unitId, UnitOfMeasure oUnitOfMeasure)
         {
-            oUnitOfMeasure.UnitID = unitId;
+            oUnitOfMeasure.Id = unitId;
 
             try
             {
@@ -187,7 +187,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUnitOfMeasureList = con.Query<UnitOfMeasure>("sp_UnitOfMeasure",
+                    var oUnitOfMeasureList = con.Query<UnitOfMeasure>("[salespropos].[sp_UnitOfMeasures]",
                         _unitOfMeasure.SetParameters(oUnitOfMeasure, operationType),
                         commandType: CommandType.StoredProcedure);
 
