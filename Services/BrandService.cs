@@ -32,7 +32,7 @@ namespace Inventory_Web_API.Services
         {
             try
             {
-                int operationType = Convert.ToInt32(oBrand.BrandId == 0 ? OperationType.Insert : OperationType.Update);
+                int operationType = Convert.ToInt32(oBrand.Id == 0 ? OperationType.Insert : OperationType.Update);
 
                 using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
@@ -41,7 +41,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oBrandList = con.Query<Brand>("sp_Brand",
+                    var oBrandList = con.Query<Brand>("[salespropos].[sp_Brand]",
                        _brand.SetParameters(oBrand, operationType),
                        commandType: CommandType.StoredProcedure);
 
@@ -68,7 +68,7 @@ namespace Inventory_Web_API.Services
             {
                 _brand = new Brand()
                 {
-                    BrandId = brandId
+                    Id = brandId
                 };
 
                 using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
@@ -78,7 +78,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oBrandList = con.Query<Brand>("sp_Brand",
+                    var oBrandList = con.Query<Brand>("[salespropos].[sp_Brand]",
                         _brand.SetParameters(_brand, (int)OperationType.Delete),
                         commandType: CommandType.StoredProcedure);
 
@@ -103,7 +103,7 @@ namespace Inventory_Web_API.Services
         {
             _brand = new Brand()
             {
-                BrandId = brandId
+                Id = brandId
             };
 
             try
@@ -117,7 +117,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oBrandList = con.Query<Brand>("sp_Brand",
+                    var oBrandList = con.Query<Brand>("[salespropos].[sp_Brand]",
                         _brand.SetParameters(_brand, operationType),
                        commandType: CommandType.StoredProcedure).ToList();
 
@@ -152,7 +152,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oBrandList = con.Query<Brand>("sp_Brand",
+                    var oBrandList = con.Query<Brand>("[salespropos].[sp_Brand]",
                        _brand.SetParameters(_brand, operationType),
                        commandType: CommandType.StoredProcedure);
 
@@ -174,7 +174,7 @@ namespace Inventory_Web_API.Services
 
         public Brand UpdateBrand(int brandId, Brand oBrand)
         {
-            oBrand.BrandId = brandId;
+            oBrand.Id = brandId;
 
             try
             {
@@ -187,7 +187,7 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oBrandList = con.Query<Brand>("sp_Brand",
+                    var oBrandList = con.Query<Brand>("[salespropos].[sp_Brand]",
                         _brand.SetParameters(oBrand, operationType),
                         commandType: CommandType.StoredProcedure);
 
