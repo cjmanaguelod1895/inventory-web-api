@@ -15,6 +15,8 @@ namespace Inventory_Web_API.Models
 
         public int Role_id { get; set; }
 
+        public string Role { get; set; }
+
         public string Token { get; set; }
 
         public int Is_Active { get; set; }
@@ -25,6 +27,7 @@ namespace Inventory_Web_API.Models
             Name = user.Name;
             Email = user.Email;
             Role_id = user.Role_id;
+            Role = user.Role;
             Token = token;
             Is_Active = user.Is_Active;
         }

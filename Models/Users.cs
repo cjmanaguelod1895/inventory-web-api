@@ -12,6 +12,8 @@ namespace Inventory_Web_API.Models
     {
         public int Id { get; set; }
 
+        public string Username { get; set; }
+
         public string Name { get; set; }
 
         public string Email { get; set; }
@@ -23,6 +25,8 @@ namespace Inventory_Web_API.Models
         public string Company_Name { get; set; }
 
         public int Role_id { get; set; }
+
+        public string Role { get; set; }
 
         public int Biller_Id { get; set; }
 
@@ -45,11 +49,13 @@ namespace Inventory_Web_API.Models
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@Id", oUser.Id);
             parameters.Add("@Name", oUser.Name);
+            parameters.Add("@Username", oUser.Username);
             parameters.Add("@Email", oUser.Email);
             parameters.Add("@Password", oUser.Password);
             parameters.Add("@Phone", oUser.Phone);
             parameters.Add("@Company_Name", oUser.Company_Name);
             parameters.Add("@Role_id", oUser.Role_id);
+            parameters.Add("@Role", oUser.Role);
             parameters.Add("@Biller_id", oUser.Biller_Id);
             parameters.Add("@Warehouse_id", oUser.Warehouse_id);
             parameters.Add("@Is_active", oUser.Is_Active);

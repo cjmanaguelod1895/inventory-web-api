@@ -39,7 +39,7 @@ namespace Inventory_Web_API.Services
 
             _oUser = new Users()
             {
-                Email = model.Email,
+                Username = model.Username,
                 Password = model.Password,
                 Last_login_date = currentDate
             };
@@ -59,9 +59,11 @@ namespace Inventory_Web_API.Services
                        _oUser.SetParameters(_oUser, operationType),
                        commandType: CommandType.StoredProcedure).ToList();
 
+                    
+
                     if (oUsers != null && oUsers.Count() > 0)
                     {
-                        _oUser = oUsers.SingleOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+                        _oUser = oUsers.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
 
 
                         // authentication successful so generate jwt token
@@ -81,7 +83,7 @@ namespace Inventory_Web_API.Services
             }
 
             return new AuthenticateResponse(_oUser, token);
-        }
+            }
 
 
         private string GenerateJWTToken(Users user)
