@@ -310,6 +310,36 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Inventory_Web_API.Controllers.Taxes.Get">
+            <summary>
+            Get list for all Taxes.
+            </summary>
+            <returns>Get list for all Taxes</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Taxes.Get(System.Int32)">
+            <summary>
+            Get list for all Tax per Id.
+            </summary>
+            <returns>Get list for all Tax</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Taxes.Post(Inventory_Web_API.Models.Tax)">
+            <summary>
+            Add/Save New Tax details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Taxes.Put(System.Int32,Inventory_Web_API.Models.Tax)">
+            <summary>
+            Update user Tax.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Taxes.Delete(System.Int32)">
+            <summary>
+            Delete user Tax.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Inventory_Web_API.Controllers.UnitOfMeasures.GetUnitOfMeasureList">
             <summary>
             Get list of Unit Of Measure.
