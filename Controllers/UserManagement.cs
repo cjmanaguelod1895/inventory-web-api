@@ -35,12 +35,12 @@ namespace Inventory_Web_API.Controllers
         /// Get list for all user per Id.
         /// </summary>
         /// <returns>Get list for all Users</returns>
-        // GET: Inventory/UserManagement/{id}
-        [HttpGet("{id}")]
+        // GET: Inventory/UserManagement/{userId}
+        [HttpGet("{userId}")]
         [Authorize]
-        public Users Get(int id)
+        public Users Get(int userId)
         {
-            return _oUsersService.GetUser(id);
+            return _oUsersService.GetUser(userId);
         }
 
         /// <summary>

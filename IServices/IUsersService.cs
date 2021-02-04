@@ -11,13 +11,13 @@ namespace Inventory_Web_API.IServices
 
         List<Users> GetAllUsers();
 
-        Users GetUser(int userId);
+        Users GetUser(int id);
 
         Users AddUser(Users users);
 
-        Users UpdateUser(int userId, Users user);
+        Users UpdateUser(int id, Users user);
 
 
-        string Delete(int userId);
+        string Delete(int id);
     }
 }

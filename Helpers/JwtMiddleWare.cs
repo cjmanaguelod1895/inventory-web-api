@@ -22,11 +22,11 @@ namespace Inventory_Web_API.Helpers
             _appSettings = appSettings.Value;
         }
 
-        public async Task Invoke(HttpContext context, IUsersService userService)
+        public async Task Invoke(HttpContext context, IUsersService userService , ILoginService loginService)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
-            if (token != null)
+            if (token != null || token != "")
                 attachUserToContext(context, userService, token);
 
             await _next(context);
@@ -53,8 +53,9 @@ namespace Inventory_Web_API.Helpers
 
                 // attach user to context on successful jwt validation
                 context.Items["User"] = userService.GetUser(userId);
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // do nothing if jwt validation fails
                 // user is not attached to context so request won't have access to secure routes

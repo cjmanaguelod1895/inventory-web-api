@@ -4,7 +4,6 @@ using Inventory_Web_API.Helpers;
 using Inventory_Web_API.IServices;
 using Inventory_Web_API.Models;
 using Inventory_Web_API.Models.PSGC;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -15,25 +14,22 @@ using System.Threading.Tasks;
 
 namespace Inventory_Web_API.Services
 {
-    public class UsersService : IUsersService
+    public class RoleService : IRoleService
     {
         PSGC _psgc = new PSGC();
-        Users _oUser = new Users();
-        List<Users> _oUsers = new List<Users>();
+        Role _role = new Role();
+        List<Role> _roleList = new List<Role>();
+
 
         private readonly AppSettings _appSettings;
 
-        public UsersService(IOptions<AppSettings> appsettings)
+        public RoleService(IOptions<AppSettings> appsettings)
         {
             _appSettings = appsettings.Value;
         }
 
-
-        public List<Users> GetAllUsers()
+        public List<Role> GetRoleList()
         {
-            _oUser = new Users();
-            _oUsers = new List<Users>();
-
             try
             {
                 int operationType = Convert.ToInt32(OperationType.SelectAll);
@@ -48,31 +44,31 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
-                       _oUser.SetParameters(_oUser, operationType),
+                    var oRoleList = con.Query<Role>("[salespropos].[sp_Roles]",
+                       _role.SetParameters(_role, operationType),
                        commandType: CommandType.StoredProcedure);
 
 
-                    if (oUsers != null && oUsers.Count() > 0)
+                    if (oRoleList != null && oRoleList.Count() > 0)
                     {
-                        _oUsers = oUsers.ToList();
+                        _roleList = oRoleList.ToList();
                     }
                 }
             }
             catch (Exception ex)
             {
+
                 _psgc.Message = ex.Message;
             }
 
-            return _oUsers;
+            return _roleList;
         }
 
-        public Users GetUser(int id)
+        public Role GetRole(int roleId)
         {
-
-            _oUser = new Users()
+            _role = new Role()
             {
-                Id = id
+                Id = roleId
             };
 
             try
@@ -86,36 +82,30 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
-                        _oUser.SetParameters(_oUser, operationType),
+                    var oRoleList = con.Query<Role>("[salespropos].[sp_Roles]",
+                        _role.SetParameters(_role, operationType),
                        commandType: CommandType.StoredProcedure).ToList();
 
-                    if (oUsers != null && oUsers.Count() > 0)
+                    if (oRoleList != null && oRoleList.Count() > 0)
                     {
-                        _oUser = oUsers.SingleOrDefault();
+                        _role = oRoleList.SingleOrDefault();
                     }
                 }
             }
             catch (Exception ex)
             {
+
                 _psgc.Message = ex.Message;
             }
 
-            return _oUser;
+            return _role;
         }
 
-
-        public Users AddUser(Users users)
+        public Role AddRole(Role role)
         {
-
-            //_oUser = new Users();
-            DateTime aDate = DateTime.Now;
-            users.Password = EncryptAndDecrypt.ConvertToEncrypt(users.Password);
-            users.Created_at = aDate;
-
             try
             {
-                int operationType = Convert.ToInt32(users.Id == 0 ? OperationType.Insert : OperationType.Update);
+                int operationType = Convert.ToInt32(role.Id == 0 ? OperationType.Insert : OperationType.Update);
 
                 using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
                 {
@@ -124,33 +114,28 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
-                        _oUser.SetParameters(users, operationType),
-                        commandType: CommandType.StoredProcedure);
+                    var oRoleList = con.Query<Role>("[salespropos].[sp_Roles]",
+                       _role.SetParameters(role, operationType),
+                       commandType: CommandType.StoredProcedure); ;
 
-                    if (oUsers != null && oUsers.Count() > 0)
+                    if (oRoleList != null && oRoleList.Count() > 0)
                     {
-                        _oUser = oUsers.FirstOrDefault();
+                        _role = oRoleList.FirstOrDefault();
                     }
                 }
             }
             catch (Exception ex)
             {
+
                 _psgc.Message = ex.Message;
             }
 
-            return _oUser;
-
-
+            return _role;
         }
 
-        public Users UpdateUser(int id, Users user)
-        { 
-
-            _oUser = new Users();
-            DateTime aDate = DateTime.Now;
-            user.Id = id;
-            user.Updated_at = aDate;
+        public Role UpdateRole(int roleId, Role role)
+        {
+            role.Id = roleId;
 
             try
             {
@@ -163,34 +148,34 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
-                        _oUser.SetParameters(user, operationType),
+                    var oRoleList = con.Query<Role>("[salespropos].[sp_Roles]",
+                        _role.SetParameters(role, operationType),
                         commandType: CommandType.StoredProcedure);
 
-                    if (oUsers != null && oUsers.Count() > 0)
+                    if (oRoleList != null && oRoleList.Count() > 0)
                     {
-                        _oUser = oUsers.FirstOrDefault();
+                        _role = oRoleList.FirstOrDefault();
                     }
                 }
             }
             catch (Exception ex)
             {
+
                 _psgc.Message = ex.Message;
             }
 
-            return _oUser;
+            return _role;
         }
 
-        public string Delete(int id)
+        public string Delete(int roleId)
         {
-
             string message = "";
 
             try
             {
-                _oUser = new Users()
+                _role = new Role()
                 {
-                    Id = id
+                    Id = roleId
                 };
 
                 using (IDbConnection con = new SqlConnection(AppSettings.ConnectionStrings))
@@ -200,13 +185,13 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
-                    var oUsers = con.Query<Users>("[salespropos].[sp_Users]",
-                        _oUser.SetParameters(_oUser, (int)OperationType.Delete),
+                    var oRoleList = con.Query<Role>("[salespropos].[sp_Roles]",
+                        _role.SetParameters(_role, (int)OperationType.Delete),
                         commandType: CommandType.StoredProcedure);
 
-                    if (oUsers != null && oUsers.Count() > 0)
+                    if (oRoleList != null && oRoleList.Count() > 0)
                     {
-                        _oUser = oUsers.FirstOrDefault();
+                        _role = oRoleList.FirstOrDefault();
 
                         message = "Data Deleted!";
                     }

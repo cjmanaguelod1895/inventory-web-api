@@ -3,6 +3,7 @@ using Inventory_Web_API.Common;
 using Inventory_Web_API.Helpers;
 using Inventory_Web_API.IServices;
 using Inventory_Web_API.Models;
+using Inventory_Web_API.Models.PSGC;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -22,6 +23,7 @@ namespace Inventory_Web_API.Services
     public class LoginService : ILoginService
     {
         Users _oUser = new Users();
+        PSGC _psgc = new PSGC();
         private readonly AppSettings _appSettings;
 
 
@@ -59,7 +61,7 @@ namespace Inventory_Web_API.Services
                        _oUser.SetParameters(_oUser, operationType),
                        commandType: CommandType.StoredProcedure).ToList();
 
-                    
+
 
                     if (oUsers != null && oUsers.Count() > 0)
                     {
@@ -83,7 +85,7 @@ namespace Inventory_Web_API.Services
             }
 
             return new AuthenticateResponse(_oUser, token);
-            }
+        }
 
 
         private string GenerateJWTToken(Users user)
@@ -101,5 +103,6 @@ namespace Inventory_Web_API.Services
             return tokenHandler.WriteToken(token);
 
         }
+
     }
 }

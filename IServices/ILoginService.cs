@@ -9,5 +9,6 @@ namespace Inventory_Web_API.IServices
     public interface ILoginService
     {
         AuthenticateResponse Authenticate(AuthenticateRequest model);
+
     }
 }

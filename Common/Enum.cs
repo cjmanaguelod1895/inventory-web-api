@@ -15,4 +15,9 @@ namespace Inventory_Web_API.Common
         Login = 5
 
     }
+
+    public enum SettingServices
+    {
+        Roles = 1
+    }
 }

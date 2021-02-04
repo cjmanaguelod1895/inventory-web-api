@@ -280,6 +280,36 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Inventory_Web_API.Controllers.Roles.Get">
+            <summary>
+            Get list for all Roles.
+            </summary>
+            <returns>Get list for all Roles</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Roles.Get(System.Int32)">
+            <summary>
+            Get list for all Role per Id.
+            </summary>
+            <returns>Get list for all Role</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Roles.Post(Inventory_Web_API.Models.Role)">
+            <summary>
+            Add/Save New Role details.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Roles.Put(System.Int32,Inventory_Web_API.Models.Role)">
+            <summary>
+            Update user Role.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.Roles.Delete(System.Int32)">
+            <summary>
+            Delete user Role.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Inventory_Web_API.Controllers.Suppliers.Get">
             <summary>
             Get list for all Suppliers.
