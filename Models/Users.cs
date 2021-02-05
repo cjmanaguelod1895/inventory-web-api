@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Inventory_Web_API.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,6 @@ namespace Inventory_Web_API.Models
         public string Phone { get; set; }
 
         public string Company_Name { get; set; }
-
         public int Role_id { get; set; }
 
         public string Role { get; set; }
@@ -32,7 +32,7 @@ namespace Inventory_Web_API.Models
 
         public int Warehouse_id { get; set; }
 
-        public int Is_Active { get; set; }
+        public int Is_active { get; set; }
 
         public int Is_deleted { get; set; }
 
@@ -58,7 +58,7 @@ namespace Inventory_Web_API.Models
             parameters.Add("@Role", oUser.Role);
             parameters.Add("@Biller_id", oUser.Biller_Id);
             parameters.Add("@Warehouse_id", oUser.Warehouse_id);
-            parameters.Add("@Is_active", oUser.Is_Active);
+            parameters.Add("@Is_active", oUser.Is_active);
             parameters.Add("@Is_deleted", oUser.Is_deleted);
             parameters.Add("@Created_at", oUser.Created_at);
             parameters.Add("@Updated_at", oUser.Updated_at);

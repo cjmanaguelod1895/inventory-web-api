@@ -19,7 +19,7 @@ namespace Inventory_Web_API.Models
 
         public string Token { get; set; }
 
-        public int Is_Active { get; set; }
+        public int Is_active { get; set; }
 
         public AuthenticateResponse(Users user, string token)
         {
@@ -29,7 +29,7 @@ namespace Inventory_Web_API.Models
             Role_id = user.Role_id;
             Role = user.Role;
             Token = token;
-            Is_Active = user.Is_Active;
+            Is_active = user.Is_active;
         }
 
     }

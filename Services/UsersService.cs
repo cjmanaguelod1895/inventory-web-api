@@ -67,12 +67,12 @@ namespace Inventory_Web_API.Services
             return _oUsers;
         }
 
-        public Users GetUser(int id)
+        public Users GetUser(int userId)
         {
 
             _oUser = new Users()
             {
-                Id = id
+                Id = userId
             };
 
             try

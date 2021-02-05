@@ -11,7 +11,7 @@ namespace Inventory_Web_API.IServices
 
         List<Users> GetAllUsers();
 
-        Users GetUser(int id);
+        Users GetUser(int userId);
 
         Users AddUser(Users users);
 
