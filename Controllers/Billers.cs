@@ -57,6 +57,9 @@ namespace Inventory_Web_API.Controllers
         [Authorize]
         public async Task<ActionResult<Biller>> Post([FromForm] Biller oBiller)
         {
+
+
+
             if (ModelState.IsValid)
             {
                 oBiller.Image = await SaveImage(oBiller.ImageFile);
