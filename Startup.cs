@@ -119,6 +119,10 @@ namespace Inventory_Web_API
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                //app.UseHsts();
+            }
 
             app.UseDeveloperExceptionPage();
 
@@ -140,6 +144,8 @@ namespace Inventory_Web_API
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
+
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
 
@@ -152,6 +158,8 @@ namespace Inventory_Web_API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Inventory API V1");
             });
+
+ 
 
 
         }

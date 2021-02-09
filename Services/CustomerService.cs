@@ -52,7 +52,7 @@ namespace Inventory_Web_API.Services
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
 
