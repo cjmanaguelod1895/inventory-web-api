@@ -92,6 +92,7 @@ namespace Inventory_Web_API
 
 
 
+
             services.AddSingleton<IConfiguration>(Configuration);
             AppSettings.ConnectionStrings = Configuration.GetValue<string>("MySettings:ConnectionStrings");
             services.AddScoped<ILoginService, LoginService>();
@@ -110,6 +111,7 @@ namespace Inventory_Web_API
             services.AddScoped<ICurrencyService, CurrencySevice>();
             services.AddScoped<ITaxService, TaxService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IUploadImageService, UploadImageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

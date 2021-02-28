@@ -3,11 +3,13 @@ using Inventory_Web_API.Common;
 using Inventory_Web_API.Helpers;
 using Inventory_Web_API.IServices;
 using Inventory_Web_API.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,10 +21,12 @@ namespace Inventory_Web_API.Services
         List<Biller> _oBillers = new List<Biller>();
 
         private readonly AppSettings _appSettings;
+        private IUploadImageService _uploadImageSservice;
 
-        public BillerService(IOptions<AppSettings> appsettings)
+        public BillerService(IOptions<AppSettings> appsettings, IUploadImageService uploadImageSservice)
         {
             _appSettings = appsettings.Value;
+            _uploadImageSservice = uploadImageSservice;
         }
 
 
@@ -49,11 +53,22 @@ namespace Inventory_Web_API.Services
 
                     if (oBillers != null && oBillers.Count() > 0)
                     {
+
                         _oBiller = oBillers.FirstOrDefault();
+
+                        if (biller.ImageFile != null)
+                        {
+                            _oBiller.Image = _uploadImageSservice.SaveImage(biller.ImageFile, _oBiller.Id);
+
+
+                            con.Query<Biller>("[salespropos].[sp_Billers]",
+                            _oBiller.SetParameters(_oBiller, 3),
+                            commandType: CommandType.StoredProcedure);
+                        }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
 
@@ -80,6 +95,13 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
+                    var getBiller = this.GetBiller(billerId);
+
+
+                    _uploadImageSservice.DeleteImage(getBiller.Image);
+
+
+
                     var oBillers = con.Query<Biller>("[salespropos].[sp_Billers]",
                         _oBiller.SetParameters(_oBiller, (int)OperationType.Delete),
                         commandType: CommandType.StoredProcedure);
@@ -105,8 +127,12 @@ namespace Inventory_Web_API.Services
         {
             _oBiller = new Biller()
             {
-                Id = billerId
+                Id = billerId,
+
+
             };
+
+            var test = new { tset = "test" };
 
             try
             {
@@ -164,6 +190,9 @@ namespace Inventory_Web_API.Services
                     if (oBillers != null && oBillers.Count() > 0)
                     {
                         _oBillers = oBillers.ToList();
+                        string path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\upload"}";
+
+
                     }
                 }
             }
@@ -194,6 +223,19 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
+                    var getBiller = this.GetBiller(billerId);
+
+                    if (biller.ImageFile != null)
+                    {
+                        if (!string.IsNullOrEmpty(getBiller.Image))
+                        {
+                            _uploadImageSservice.DeleteImage(getBiller.Image);
+                            _oBiller.Image = _uploadImageSservice.SaveImage(biller.ImageFile, billerId);
+                            biller.Image = _oBiller.Image;
+
+                        }
+                    }
+
                     var oBillers = con.Query<Biller>("[salespropos].[sp_Billers]",
                         _oBiller.SetParameters(biller, operationType),
                         commandType: CommandType.StoredProcedure);
@@ -202,6 +244,9 @@ namespace Inventory_Web_API.Services
                     {
                         _oBiller = oBillers.FirstOrDefault();
                     }
+
+
+
                 }
             }
             catch (Exception)

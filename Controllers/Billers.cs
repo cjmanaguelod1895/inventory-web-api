@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Inventory_Web_API.Common;
 using Inventory_Web_API.IServices;
 using Inventory_Web_API.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -17,11 +18,11 @@ namespace Inventory_Web_API.Controllers
     public class Billers : Controller
     {
         private IBillerService _oBillerService;
-        private readonly IWebHostEnvironment _hostEnvironment;
-        public Billers(IBillerService oBillerService , IWebHostEnvironment hostEnvironment)
+
+        public Billers(IBillerService oBillerService)
         {
             _oBillerService = oBillerService;
-            this._hostEnvironment = hostEnvironment;
+            
         }
 
         /// <summary>
@@ -57,13 +58,11 @@ namespace Inventory_Web_API.Controllers
         [Authorize]
         public async Task<ActionResult<Biller>> Post([FromForm] Biller oBiller)
         {
-
-
-
             if (ModelState.IsValid)
             {
-                oBiller.Image = await SaveImage(oBiller.ImageFile);
+
                 return _oBillerService.AddBiller(oBiller);
+
             }
             else
             {
@@ -78,7 +77,7 @@ namespace Inventory_Web_API.Controllers
         // PUT: Inventory/Billers/{billerId}
         [HttpPut("{billerId}")]
         [Authorize]
-        public Biller Put(int billerId, [FromBody] Biller oBiller)
+        public Biller Put(int billerId, [FromForm] Biller oBiller)
         {
             if (ModelState.IsValid)
             {
@@ -102,47 +101,5 @@ namespace Inventory_Web_API.Controllers
             return _oBillerService.Delete(billerId);
         }
 
-        [NonAction]
-        public async Task<string> SaveImage(IFormFile imageFile)
-        {
-            string test = "";
-            //string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
-            //imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
-            //var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "Images", imageName);
-            //using (var fileStream = new FileStream(imagePath, FileMode.Create))
-            //{
-            //    await imageFile.CopyToAsync(fileStream);
-            //}
-            //return imageName;
-
-            try
-            {
-                if (imageFile.Length > 0)
-                {
-                    string path = _hostEnvironment.WebRootPath + "\\upload\\";
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    using (FileStream fileStream = System.IO.File.Create(path + imageFile.FileName))
-                    {
-                        imageFile.CopyTo(fileStream);
-                        fileStream.Flush();
-                        test = "Uploaded successfully";
-                    }
-                }
-                else
-                {
-                    test = "Not Uploaded.";
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-            return test;
-        }
     }
 }
