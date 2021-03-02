@@ -8,7 +8,7 @@ namespace Inventory_Web_API.IServices
 {
     public interface IUploadImageService
     {
-        string SaveImage(IFormFile imageFile, int id);
-        string DeleteImage(string imageName);
+        string SaveImage(IFormFile imageFile, int id, string imageClassification);
+        string DeleteImage(string imageName, string imageClassification);
     }
 }

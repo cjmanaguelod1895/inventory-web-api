@@ -19,10 +19,12 @@ namespace Inventory_Web_API.Services
         List<Supplier> _oSuppliers = new List<Supplier>();
 
         private readonly AppSettings _appSettings;
+        private IUploadImageService _uploadImageSservice;
 
-        public SupplierService(IOptions<AppSettings> appsettings)
+        public SupplierService(IOptions<AppSettings> appsettings, IUploadImageService uploadImageSservice)
         {
             _appSettings = appsettings.Value;
+            _uploadImageSservice = uploadImageSservice;
         }
 
         public Supplier AddSupplier(Supplier supplier)
@@ -48,11 +50,22 @@ namespace Inventory_Web_API.Services
 
                     if (oSuppliers != null && oSuppliers.Count() > 0)
                     {
+
                         _oSupplier = oSuppliers.FirstOrDefault();
+
+                        if (supplier.ImageFile != null)
+                        {
+                            _oSupplier.Image = _uploadImageSservice.SaveImage(supplier.ImageFile, _oSupplier.Id, "Supplier");
+
+
+                            con.Query<Supplier>("[salespropos].[sp_Suppliers]",
+                            _oSupplier.SetParameters(_oSupplier, 3),
+                            commandType: CommandType.StoredProcedure);
+                        }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
 
@@ -79,6 +92,13 @@ namespace Inventory_Web_API.Services
                         con.Open();
                     }
 
+                    var getSupplier = this.GetSupplier(supplierId);
+
+
+                    _uploadImageSservice.DeleteImage(getSupplier.Image, "Supplier");
+
+
+
                     var oSuppliers = con.Query<Supplier>("[salespropos].[sp_Suppliers]",
                         _oSupplier.SetParameters(_oSupplier, (int)OperationType.Delete),
                         commandType: CommandType.StoredProcedure);
@@ -100,12 +120,16 @@ namespace Inventory_Web_API.Services
             return message;
         }
 
-        public Supplier GetSupplier(int supplierId)
+            public Supplier GetSupplier(int supplierId)
         {
             _oSupplier = new Supplier()
             {
-                Id = supplierId
+                Id = supplierId,
+
+
             };
+
+            var test = new { tset = "test" };
 
             try
             {
@@ -192,6 +216,20 @@ namespace Inventory_Web_API.Services
                     {
                         con.Open();
                     }
+
+                    var getSupplier = this.GetSupplier(supplierId);
+
+                    if (supplier.ImageFile != null)
+                    {
+                        if (!string.IsNullOrEmpty(getSupplier.Image))
+                        {
+                            _uploadImageSservice.DeleteImage(getSupplier.Image, "Supplier");
+                            _oSupplier.Image = _uploadImageSservice.SaveImage(supplier.ImageFile, supplierId, "Supplier");
+                            supplier.Image = _oSupplier.Image;
+
+                        }
+                    }
+
 
                     var oSuppliers = con.Query<Supplier>("[salespropos].[sp_Suppliers]",
                         _oSupplier.SetParameters(supplier, operationType),

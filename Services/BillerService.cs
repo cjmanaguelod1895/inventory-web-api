@@ -58,7 +58,7 @@ namespace Inventory_Web_API.Services
 
                         if (biller.ImageFile != null)
                         {
-                            _oBiller.Image = _uploadImageSservice.SaveImage(biller.ImageFile, _oBiller.Id);
+                            _oBiller.Image = _uploadImageSservice.SaveImage(biller.ImageFile, _oBiller.Id, "Biller");
 
 
                             con.Query<Biller>("[salespropos].[sp_Billers]",
@@ -98,7 +98,7 @@ namespace Inventory_Web_API.Services
                     var getBiller = this.GetBiller(billerId);
 
 
-                    _uploadImageSservice.DeleteImage(getBiller.Image);
+                    _uploadImageSservice.DeleteImage(getBiller.Image, "Biller");
 
 
 
@@ -190,8 +190,6 @@ namespace Inventory_Web_API.Services
                     if (oBillers != null && oBillers.Count() > 0)
                     {
                         _oBillers = oBillers.ToList();
-                        string path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\upload"}";
-
 
                     }
                 }
@@ -229,8 +227,8 @@ namespace Inventory_Web_API.Services
                     {
                         if (!string.IsNullOrEmpty(getBiller.Image))
                         {
-                            _uploadImageSservice.DeleteImage(getBiller.Image);
-                            _oBiller.Image = _uploadImageSservice.SaveImage(biller.ImageFile, billerId);
+                            _uploadImageSservice.DeleteImage(getBiller.Image, "Biller");
+                            _oBiller.Image = _uploadImageSservice.SaveImage(biller.ImageFile, billerId, "Biller");
                             biller.Image = _oBiller.Image;
 
                         }

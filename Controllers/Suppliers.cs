@@ -50,7 +50,7 @@ namespace Inventory_Web_API.Controllers
         // POST: Inventory/Supplier
         [HttpPost]
         [Authorize]
-        public Supplier Post([FromBody] Supplier oSupplier)
+        public Supplier Post([FromForm] Supplier oSupplier)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +69,7 @@ namespace Inventory_Web_API.Controllers
         // PUT: Inventory/Billers/{supplierId}
         [HttpPut("{supplierId}")]
         [Authorize]
-        public Supplier Put(int supplierId, [FromBody] Supplier oSupplier)
+        public Supplier Put(int supplierId, [FromForm] Supplier oSupplier)
         {
             if (ModelState.IsValid)
             {

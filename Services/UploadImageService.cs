@@ -19,7 +19,7 @@ namespace Inventory_Web_API.Services
         }
 
 
-        public  string SaveImage(IFormFile imageFile, int id)
+        public string SaveImage(IFormFile imageFile, int id, string imageClassification)
         {
             string response = "";
 
@@ -30,8 +30,8 @@ namespace Inventory_Web_API.Services
 
                     string imageName = Path.GetFileNameWithoutExtension(imageFile.FileName);
                     string extension = Path.GetExtension(imageFile.FileName);
-                    string fileName = "BillerImage_" + id + "_"+ DateTime.Now.ToString("yyyyMMdd") + extension;
-                    string path = _hostEnvironment.WebRootPath + "\\images\\\\uploads\\\\billers\\";
+                    string fileName = imageClassification + "_" + +id + "_" + DateTime.Now.ToString("yyyyMMdd") + extension;
+                    string path = _hostEnvironment.WebRootPath + "\\images\\\\uploads\\\\" + imageClassification + "\\";
                     if (!Directory.Exists(path))
                     {
                         Directory.CreateDirectory(path);
@@ -58,10 +58,10 @@ namespace Inventory_Web_API.Services
         }
 
 
-        public string DeleteImage(string imageName)
+        public string DeleteImage(string imageName, string imageClassification)
         {
             string response = "";
-            string path = _hostEnvironment.WebRootPath + "\\images\\\\uploads\\\\billers\\";
+            string path = _hostEnvironment.WebRootPath + "\\images\\\\uploads\\\\" + imageClassification + "\\";
 
             string filePath = Path.Combine(path, imageName);
             System.IO.File.Delete(filePath);
