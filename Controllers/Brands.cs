@@ -51,7 +51,7 @@ namespace Inventory_Web_API.Controllers
         // POST: Inventory/Brand
         [HttpPost]
         [Authorize]
-        public Brand AddNewBrand([FromBody] Brand oBrand)
+        public Brand AddNewBrand([FromForm] Brand oBrand)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace Inventory_Web_API.Controllers
         // PUT: Inventory/{brandId}
         [HttpPut("{brandId}")]
         [Authorize]
-        public Brand UpdateBrand(int brandId, [FromBody] Brand oBrand)
+        public Brand UpdateBrand(int brandId, [FromForm] Brand oBrand)
         {
             if (ModelState.IsValid)
             {

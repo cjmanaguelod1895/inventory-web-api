@@ -22,14 +22,20 @@ namespace Inventory_Web_API.Services
 
 
         private readonly AppSettings _appSettings;
+        private IUploadImageService _uploadImageSservice;
 
-        public BrandService(IOptions<AppSettings> appsettings)
+        public BrandService(IOptions<AppSettings> appsettings, IUploadImageService uploadImageSservice)
         {
             _appSettings = appsettings.Value;
+            _uploadImageSservice = uploadImageSservice;
         }
 
         public Brand AddBrand(Brand oBrand)
         {
+            _brand = new Brand();
+            DateTime aDate = DateTime.Now;
+            oBrand.Created_at = aDate;
+
             try
             {
                 int operationType = Convert.ToInt32(oBrand.Id == 0 ? OperationType.Insert : OperationType.Update);
@@ -48,6 +54,13 @@ namespace Inventory_Web_API.Services
                     if (oBrandList != null && oBrandList.Count() > 0)
                     {
                         _brand = oBrandList.FirstOrDefault();
+
+                        _brand.Image = _uploadImageSservice.SaveImage(oBrand.ImageFile, _brand.Id, "Brand");
+
+
+                        con.Query<Biller>("[salespropos].[sp_Brand]",
+                        _brand.SetParameters(_brand, 3),
+                        commandType: CommandType.StoredProcedure);
                     }
                 }
             }
@@ -77,6 +90,12 @@ namespace Inventory_Web_API.Services
                     {
                         con.Open();
                     }
+
+                    var getBrand = this.GetBrand(brandId);
+
+
+                    _uploadImageSservice.DeleteImage(getBrand.Image, "Brand");
+
 
                     var oBrandList = con.Query<Brand>("[salespropos].[sp_Brand]",
                         _brand.SetParameters(_brand, (int)OperationType.Delete),
@@ -171,10 +190,12 @@ namespace Inventory_Web_API.Services
 
             return _brandList;
         }
-
+            
         public Brand UpdateBrand(int brandId, Brand oBrand)
         {
             oBrand.Id = brandId;
+            DateTime aDate = DateTime.Now;
+            oBrand.Updated_at = aDate;
 
             try
             {
@@ -185,6 +206,19 @@ namespace Inventory_Web_API.Services
                     if (con.State == ConnectionState.Closed)
                     {
                         con.Open();
+                    }
+
+                    var getBrand = this.GetBrand(brandId);
+
+                    if (oBrand.ImageFile != null)
+                    {
+                        if (!string.IsNullOrEmpty(getBrand.Image))
+                        {
+                            _uploadImageSservice.DeleteImage(getBrand.Image, "Brand");
+                            _brand.Image = _uploadImageSservice.SaveImage(oBrand.ImageFile, brandId, "Brand");
+                            oBrand.Image = _brand.Image;
+
+                        }
                     }
 
                     var oBrandList = con.Query<Brand>("[salespropos].[sp_Brand]",

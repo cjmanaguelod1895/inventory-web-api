@@ -30,6 +30,9 @@ namespace Inventory_Web_API.Services
 
         public UnitOfMeasure AddUnitOfMeasure(UnitOfMeasure oUnitOfMeasure)
         {
+            DateTime aDate = DateTime.Now;
+            oUnitOfMeasure.Created_at = aDate;
+
             try
             {
                 int operationType = Convert.ToInt32(oUnitOfMeasure.Id == 0 ? OperationType.Insert : OperationType.Update);
@@ -175,6 +178,8 @@ namespace Inventory_Web_API.Services
         public UnitOfMeasure UpdateUnitOfMeasure(int unitId, UnitOfMeasure oUnitOfMeasure)
         {
             oUnitOfMeasure.Id = unitId;
+            DateTime aDate = DateTime.Now;
+            oUnitOfMeasure.Updated_at = aDate;
 
             try
             {
