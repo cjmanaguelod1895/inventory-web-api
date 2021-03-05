@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +34,17 @@ namespace Inventory_Web_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+                options.MimeTypes =
+                    ResponseCompressionDefaults.MimeTypes.Concat(
+                        new[] { "image/jpeg", "image/png", "application/font-woff2", "image/svg+xml" });
+                options.EnableForHttps = true;
+            });
+
 
             #region Set CORS
             //services.AddCors();
@@ -112,6 +125,7 @@ namespace Inventory_Web_API
             services.AddScoped<ITaxService, TaxService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IUploadImageService, UploadImageService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -125,6 +139,7 @@ namespace Inventory_Web_API
             {
                 //app.UseHsts();
             }
+
 
             app.UseDeveloperExceptionPage();
 
@@ -150,6 +165,8 @@ namespace Inventory_Web_API
 
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
+
+            app.UseResponseCompression();
 
             app.UseEndpoints(endpoints =>
             {

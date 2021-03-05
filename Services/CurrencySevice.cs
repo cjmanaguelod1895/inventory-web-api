@@ -30,6 +30,9 @@ namespace Inventory_Web_API.Services
 
         public Currency AddCurrency(Currency oCurrency)
         {
+            DateTime aDate = DateTime.Now;
+            oCurrency.Created_at = aDate;
+
             try
             {
                 int operationType = Convert.ToInt32(oCurrency.Id == 0 ? OperationType.Insert : OperationType.Update);
@@ -175,6 +178,8 @@ namespace Inventory_Web_API.Services
         public Currency UpdateCurrency(int currencyId, Currency oCurrency)
         {
             oCurrency.Id = currencyId;
+            DateTime aDate = DateTime.Now;
+            oCurrency.Updated_at = aDate;
 
             try
             {
