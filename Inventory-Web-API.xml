@@ -154,6 +154,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Inventory_Web_API.Controllers.GeneralSetting.Get">
+            <summary>
+            Get list for all GeneralSettings.
+            </summary>
+            <returns>Get list for all GeneralSettings</returns>
+        </member>
+        <member name="M:Inventory_Web_API.Controllers.GeneralSetting.Put(System.Int32,Inventory_Web_API.Models.GeneralSettings)">
+            <summary>
+            Update General Settings.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Inventory_Web_API.Controllers.Login.Authenticate(Inventory_Web_API.Models.AuthenticateRequest)">
             <summary>
             Login Autentication.

@@ -132,8 +132,6 @@ namespace Inventory_Web_API.Services
 
             };
 
-            var test = new { tset = "test" };
-
             try
             {
                 int operationType = Convert.ToInt32(OperationType.SelectSpecific);

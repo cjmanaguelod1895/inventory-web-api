@@ -125,6 +125,7 @@ namespace Inventory_Web_API
             services.AddScoped<ITaxService, TaxService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IUploadImageService, UploadImageService>();
+            services.AddScoped<IGeneralSettings, GeneralSettingsService>();
 
         }
 
